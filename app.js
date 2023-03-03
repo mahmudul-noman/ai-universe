@@ -28,14 +28,19 @@ const displayData = posts => {
                 </ol>
                 <hr>
                 <h4>${post.name}</h4>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                    to additional content.</p>
+                <p class="card-text">${post.published_in}</p>
             </div>
         </div>
         `;
         postContainer.appendChild(postDiv);
+
+
+
     });
 
 };
+
+
+
 
 loadAllData();
