@@ -91,10 +91,18 @@ const loadSingleData = async id => {
 
 const displayDataDetails = post => {
     console.log(post);
-    document.getElementById('postDetailsModalLabel').innerText = post.description;
+    // document.getElementById('postDetailsModalLabel').innerText = post.description;
     const postDetails = document.getElementById('modal-body');
     postDetails.innerHTML = `
-        <div>
+    <div class="col d-flex gap-4 p-5">
+
+
+
+        <div class="w-50 border border-danger p-3 rounded-3" style="background-color: #ddd;">
+            <div>
+                <h4>${post.description}</h4>
+            </div>
+            
             <div class="col d-flex justify-content-between align-items-center gap-2">
             <div class="card h-100 w-100">
             <div class="card-body">
@@ -118,8 +126,6 @@ const displayDataDetails = post => {
             </div>
         </div>
 
-
-
         <div class="pt-3 d-flex gap-2 justify-content-between">
         <div>
             <h4>Features</h4>
@@ -133,12 +139,34 @@ const displayDataDetails = post => {
         <div>
             <h4>Integrations</h4>
             <ul>
-                <li>${post.integrations[0]}</li>
-                <li>${post.integrations[1]}</li>
-                <li>${post.integrations[2]}</li>
+            <li>${post.integrations !== null ? post.integrations[0] : 'No Data Found'}</li>
+            <li>${post.integrations !== null ? post.integrations[1] : 'No Data Found'}</li>
+            <li>${post.integrations !== null ? post.integrations[2] : 'No Data Found'}</li>
             </ul>
         </div>
     </div>
+    </div> 
+
+
+
+
+    <div class="border border-1 p-4 rounded-3 w-50">
+
+    <div>
+        <p class="my-accuracy bg-danger end-0 p-2 position-absolute rounded-3 text-white" style="display: ${post.accuracy.score ? '' : 'none'};">
+        ${post.accuracy.score ? post.accuracy.score * 100 + '% Accuracy' : ''} </p>
+  
+        <img src="${post.image_link[0]}" class="img-fluid rounded-2 w-100">
+    </div>
+    <h4 class="text-center pt-3">${post.input_output_examples[0].input}</h4>
+    <p class="text-center pt-2">${post.input_output_examples[0].output}</p>
+
+    </div>
+
+
+
+
+
    </div>
 
 
