@@ -4,13 +4,17 @@ const loadAllData = async () => {
     const res = await fetch(url);
     const data = await res.json();
     displayData(data.data.tools.slice(0, 6));
+    // displayData(data.data.tools.sort((a, b) => new Date(b.published_in) - new Date(a.published_in)));
 }
+
 
 // display all data function
 const displayData = (posts) => {
     const postContainer = document.getElementById('post-container');
     postContainer.innerHTML = '';
     console.log(posts);
+
+    
 
     posts.forEach(post => {
         const postDiv = document.createElement('div');
@@ -80,7 +84,7 @@ const displayDataDetails = post => {
     postDetails.innerHTML = `
     <div class="row d-flex gap-4 p-5">
 
-        <div class="col w-50 border border-danger p-3 rounded-3" style="background-color: #ddd;">
+        <div class="col w-50 border border-danger p-3 rounded-3" style="background-color: rgba(235,87,87, 0.1);">
             <div>
                 <h4>${post.description == null || post.description === undefined ? 'No Description in This Card' : post.description}</h4>
             </div>
@@ -120,10 +124,10 @@ const displayDataDetails = post => {
 
         <div>
             <h4>Integrations</h4>
-            <ul>
-                <li>${post.integrations == null || post.integrations[0] === undefined ? 'No Data Found' : post.integrations[0]}</li>
-                <li>${post.integrations == null || post.integrations[1] === undefined ? 'No Data Found' : post.integrations[1]}</li>
-                <li>${post.integrations == null || post.integrations[2] === undefined ? 'No Data Found' : post.integrations[2]}</li>
+            <ul class="p-0">
+                <p>${post.integrations == null || post.integrations[0] === undefined ? 'No Data Found' : post.integrations[0]}</p>
+                <p>${post.integrations == null || post.integrations[1] === undefined ? '' : post.integrations[1]}</p>
+                <p>${post.integrations == null || post.integrations[2] === undefined ? '' : post.integrations[2]}</p>
             </ul>
         </div >
     </div >
@@ -153,3 +157,15 @@ const showAllDataTogether = async () => {
     const data = await res.json();
     displayData(data.data.tools);
 };
+
+
+// sort by date
+const sortDate = async () => {
+    const url = `https://openapi.programming-hero.com/api/ai/tools`
+    const res = await fetch(url);
+    const data = await res.json();
+    displayData(data.data.tools.sort((a, b) => new Date(b.published_in) - new Date(a.published_in)));
+}
+
+
+
