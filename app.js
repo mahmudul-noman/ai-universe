@@ -1,3 +1,4 @@
+// load all data, fetch all data
 const loadAllData = async () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
@@ -5,12 +6,14 @@ const loadAllData = async () => {
     displayData(data.data.tools);
 }
 
-
+// display all data function
 const displayData = (posts) => {
     const postContainer = document.getElementById('post-container');
 
     // postContainer.innerHTML = '';
+
     console.log(posts);
+
     // const ShowAll = document.getElementById('show-all');
     // if (posts.length > 6) {
     //     posts = posts.slice(0, 6);
@@ -20,12 +23,12 @@ const displayData = (posts) => {
     //     ShowAll.classList.add('d-none');        
     // }
 
-
     // loop every single post
-    posts.forEach(post => {
 
+    posts.forEach(post => {
         const postDiv = document.createElement('div');
         postDiv.classList.add('col');
+
 
         // date format
         const publishedDate = new Date(post.published_in);
@@ -34,6 +37,7 @@ const displayData = (posts) => {
         const year = publishedDate.getFullYear();
         const formattedDate = `${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}/${year}`;
 
+        // create innerHTML for card
         postDiv.innerHTML = `
             <div class="card">
                 <img src="${post.image}" class="card-img-top img-fluid p-3 rounded-5" alt="...">
@@ -61,6 +65,7 @@ const displayData = (posts) => {
     `;
         postContainer.appendChild(postDiv);
     });
+    toggleSpinner(false);
 }
 
 
@@ -70,18 +75,19 @@ const displayData = (posts) => {
 // })
 
 
-// // loader or spinner
-// const toggleSpinner = isLoading => {
-//     const loaderSection = document.getElementById('loader');
-//     if (isLoading) {
-//         loaderSection.classList.remove('d-none');
-//     }
-//     else {
-//         loaderSection.classList.add('d-none');
-//     }
-// }
+// loader or spinner
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if (isLoading) {
+        loaderSection.classList.remove('d-none');
+    }
+    else {
+        loaderSection.classList.add('d-none');
+    }
+}
 
 
+// load single data details
 const loadSingleData = async id => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     const res = await fetch(url);
@@ -89,14 +95,12 @@ const loadSingleData = async id => {
     displayDataDetails(data.data);
 }
 
+// display all single data function
 const displayDataDetails = post => {
     console.log(post);
-    // document.getElementById('postDetailsModalLabel').innerText = post.description;
     const postDetails = document.getElementById('modal-body');
     postDetails.innerHTML = `
     <div class="col d-flex gap-4 p-5">
-
-
 
         <div class="w-50 border border-danger p-3 rounded-3" style="background-color: #ddd;">
             <div>
@@ -147,11 +151,7 @@ const displayDataDetails = post => {
     </div >
     </div >
 
-
-
-
     <div class="border border-1 p-4 rounded-3 w-50">
-
         <div>
             <p class="my-accuracy bg-danger end-0 p-2 position-absolute rounded-3 text-white" style="display: ${post.accuracy.score ? '' : 'none'};">
                 ${post.accuracy.score ? post.accuracy.score * 100 + '% Accuracy' : ''} </p>
@@ -160,22 +160,8 @@ const displayDataDetails = post => {
         </div>
         <h4 class="text-center pt-3">${post.input_output_examples == null ? 'Can you give any example?' : post.input_output_examples[0].input}</h4>
         <p class="text-center pt-2">${post.input_output_examples == null ? 'No! Not Yet! Take a break!!!' : post.input_output_examples[0].output}</p>
-
     </div>
-
-
-
-
-
    </div >
-
-
     `
-
-
-    // <li>${post.integrations[2]}</li>
-
 }
-
-
 loadAllData();

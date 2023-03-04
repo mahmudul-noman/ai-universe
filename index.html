@@ -14,14 +14,16 @@
 
 <body>
 
-
+    <!-- header area start -->
     <header class="container text-center">
         <h1>AI Universe Hub</h1>
-        <button class="btn btn-lg btn-danger">Sort By Date</button>
+        <button id="sort-by-date" class="btn btn-lg btn-danger">Sort By Date</button>
     </header>
+    <!-- header area end -->
 
+    <!-- main section -->
     <main class="py-5">
-        <!-- card -->
+        <!-- card area start -->
         <section class="pt-4 container">
             <div id="post-container" class="row row-cols-1 row-cols-md-3 g-4">
             </div>
@@ -30,26 +32,28 @@
                 <button id="show-all-btn" class="btn btn-danger">See More</button>
             </div>
         </section>
+        <!-- card area end -->
 
-        <!-- spinner -->
-        <!-- <section id="loader" class="d-none">
+        <!-- spinner area start -->
+        <section id="loader" class="">
             <div class="d-flex justify-content-center align-items-center">
-                <div class="spinner-border text-warning" role="status" style="height: 500;">
+                <div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-        </section> -->
+        </section>
+        <!-- spinner area end -->
 
-
+        <!-- modal area start -->
         <section>
-            <!-- Modal -->
             <div class="modal fade" id="postDetailsModal" tabindex="-1" aria-labelledby="postDetailsModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-xl">
-
                     <div class="modal-content">
                         <div class="modal-header border-0">
-                            <button type="button" class="myClose border-0 end-0 float-end p-3 position-absolute rounded-5 text-bg-danger" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                            <button type="button"
+                                class="myClose border-0 end-0 float-end p-3 position-absolute rounded-5 text-bg-danger"
+                                data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                         </div>
                         <div class="modal-body" id="modal-body">
                         </div>
@@ -57,15 +61,15 @@
                 </div>
             </div>
         </section>
+        <!-- modal area end -->
     </main>
-
-    
 
 
 
     <!-- js -->
     <!-- <script src="app.js"></script> -->
     <script src="app.js"></script>
+    <!-- <script src="app1.js"></script> -->
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- font-awesome js -->
