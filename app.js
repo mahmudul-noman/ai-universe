@@ -100,66 +100,66 @@ const displayDataDetails = post => {
 
         <div class="w-50 border border-danger p-3 rounded-3" style="background-color: #ddd;">
             <div>
-                <h4>${post.description}</h4>
+                <h4>${post.description == null || post.description === undefined ? 'No Description in This Card' : post.description}</h4>
             </div>
             
             <div class="col d-flex justify-content-between align-items-center gap-2">
             <div class="card h-100 w-100">
             <div class="card-body">
-            <h5 class="card-title text-success">${post.pricing[0].price}</h5>
-            <h5 class="card-title text-success">${post.pricing[0].plan}</h5>
+            <h5 class="card-title text-success">${post.pricing == null || post.pricing[0] === undefined ? 'Free of cost/' : post.pricing[0].price}</h5>
+            <h5 class="card-title text-success">${post.pricing == null || post.pricing[0] === undefined ? 'Basic' : post.pricing[0].plan}</h5>
+            </div >
+            </div >
+
+            <div class="card h-100 w-100">
+            <div class="card-body">
+            <h5 class="card-title text-warning">${post.pricing == null || post.pricing[1] === undefined ? 'Free of cost/' : post.pricing[1].price}</h5>
+            <h5 class="card-title text-warning">${post.pricing == null || post.pricing[1] === undefined ? 'Pro' : post.pricing[1].plan}</h5>
             </div>
             </div>
 
             <div class="card h-100 w-100">
             <div class="card-body">
-            <h5 class="card-title text-warning">${post.pricing[1].price}</h5>
-            <h5 class="card-title text-warning">${post.pricing[1].plan}</h5>
+            <h5 class="card-title text-danger">${post.pricing == null || post.pricing[2] === undefined ? 'Free of cost/' : post.pricing[2].price}</h5>
+            <h5 class="card-title text-danger">${post.pricing == null || post.pricing[2] === undefined ? 'Enterprise' : post.pricing[2].plan}</h5>
             </div>
             </div>
+        </div >
 
-            <div class="card h-100 w-100">
-            <div class="card-body">
-            <h5 class="card-title text-danger">${post.pricing[2].price}</h5>
-            <h5 class="card-title text-danger">${post.pricing[2].plan}</h5>
-            </div>
-            </div>
-        </div>
-
-        <div class="pt-3 d-flex gap-2 justify-content-between">
+    <div class="pt-3 d-flex gap-2 justify-content-between">
         <div>
             <h4>Features</h4>
             <ul>
-                <li>${post.features[1].feature_name}</li>
-                <li>${post.features[2].feature_name}</li>
-                <li>${post.features[3].feature_name}</li>
+                <li>${post.features == null || post.features[1].feature_name === undefined ? 'No Features Data Found' : post.features[1].feature_name}</li>
+                <li>${post.features == null || post.features[2].feature_name === undefined ? 'No Features Data Found' : post.features[2].feature_name}</li>
+                <li>${post.features == null || post.features[3].feature_name === undefined ? 'No Features Data Found' : post.features[3].feature_name}</li>
             </ul>
         </div>
 
         <div>
             <h4>Integrations</h4>
             <ul>
-            <li>${post.integrations !== null ? post.integrations[0] : 'No Data Found'}</li>
-            <li>${post.integrations !== null ? post.integrations[1] : 'No Data Found'}</li>
-            <li>${post.integrations !== null ? post.integrations[2] : 'No Data Found'}</li>
+                <li>${post.integrations == null || post.integrations[0] === undefined ? 'No Data Found' : post.integrations[0]}</li>
+                <li>${post.integrations == null || post.integrations[1] === undefined ? 'No Data Found' : post.integrations[1]}</li>
+                <li>${post.integrations == null || post.integrations[2] === undefined ? 'No Data Found' : post.integrations[2]}</li>
             </ul>
-        </div>
-    </div>
-    </div> 
+        </div >
+    </div >
+    </div >
 
 
 
 
     <div class="border border-1 p-4 rounded-3 w-50">
 
-    <div>
-        <p class="my-accuracy bg-danger end-0 p-2 position-absolute rounded-3 text-white" style="display: ${post.accuracy.score ? '' : 'none'};">
-        ${post.accuracy.score ? post.accuracy.score * 100 + '% Accuracy' : ''} </p>
-  
-        <img src="${post.image_link[0]}" class="img-fluid rounded-2 w-100">
-    </div>
-    <h4 class="text-center pt-3">${post.input_output_examples[0].input}</h4>
-    <p class="text-center pt-2">${post.input_output_examples[0].output}</p>
+        <div>
+            <p class="my-accuracy bg-danger end-0 p-2 position-absolute rounded-3 text-white" style="display: ${post.accuracy.score ? '' : 'none'};">
+                ${post.accuracy.score ? post.accuracy.score * 100 + '% Accuracy' : ''} </p>
+
+            <img src="${post.image_link[0]}" class="img-fluid rounded-2 w-100">
+        </div>
+        <h4 class="text-center pt-3">${post.input_output_examples == null ? 'Can you give any example?' : post.input_output_examples[0].input}</h4>
+        <p class="text-center pt-2">${post.input_output_examples == null ? 'No! Not Yet! Take a break!!!' : post.input_output_examples[0].output}</p>
 
     </div>
 
@@ -167,11 +167,13 @@ const displayDataDetails = post => {
 
 
 
-   </div>
+   </div >
 
 
     `
 
+
+    // <li>${post.integrations[2]}</li>
 
 }
 
