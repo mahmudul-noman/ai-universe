@@ -4,23 +4,18 @@ const loadAllData = async () => {
     const res = await fetch(url);
     const data = await res.json();
     displayData(data.data.tools.slice(0, 6));
-    // displayData(data.data.tools.sort((a, b) => new Date(b.published_in) - new Date(a.published_in)));
 }
-
 
 // display all data function
 const displayData = (posts) => {
     const postContainer = document.getElementById('post-container');
     postContainer.innerHTML = '';
-    console.log(posts);
-
-    
 
     posts.forEach(post => {
         const postDiv = document.createElement('div');
         postDiv.classList.add('col');
 
-        // date format
+        // date formatting 
         const publishedDate = new Date(post.published_in);
         const day = publishedDate.getDate();
         const month = publishedDate.getMonth() + 1;
@@ -36,7 +31,7 @@ const displayData = (posts) => {
                     <ol>
                     <li>${post.features[0]}</li>
                     <li>${post.features[1]}</li>
-                    <li>${post.features[2] ? post.features[2] : 'No Data Found'}</li>
+                    <li>${post.features[2] ? post.features[2] : ''}</li>
                     </ol>
                     <hr>
                     
@@ -55,10 +50,11 @@ const displayData = (posts) => {
     `;
         postContainer.appendChild(postDiv);
     });
-    toggleSpinner(false);
+
+    toggleSpinner(false); // spinner stop here
 }
 
-// loader or spinner
+// loader or spinner 
 const toggleSpinner = isLoading => {
     const loaderSection = document.getElementById('loader');
     if (isLoading) {
@@ -69,7 +65,7 @@ const toggleSpinner = isLoading => {
     }
 }
 
-// load single data details
+// load single data
 const loadSingleData = async id => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     const res = await fetch(url);
@@ -77,13 +73,13 @@ const loadSingleData = async id => {
     displayDataDetails(data.data);
 }
 
-// display all single data function
+// display single data
 const displayDataDetails = post => {
     console.log(post);
     const postDetails = document.getElementById('modal-body');
     postDetails.innerHTML = `
     <div class="row d-flex gap-4 p-5">
-
+    
         <div class="col w-50 border border-danger p-3 rounded-3" style="background-color: rgba(235,87,87, 0.1);">
             <div>
                 <h4>${post.description == null || post.description === undefined ? 'No Description in This Card' : post.description}</h4>
