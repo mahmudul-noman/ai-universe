@@ -142,6 +142,7 @@ const displayDataDetails = post => {
    </div >
     `
 }
+
 loadAllData();
 
 // show all data by click see more button
