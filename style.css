@@ -35,3 +35,8 @@ p{
     line-height: 1.5px;
     margin-top: -35px;
 }
+.card-text {
+    color: tomato;
+    font-size: 18px;
+    font-weight: 600;
+}

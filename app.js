@@ -3,32 +3,18 @@ const loadAllData = async () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
     const data = await res.json();
-    displayData(data.data.tools);
+    displayData(data.data.tools.slice(0, 6));
 }
 
 // display all data function
 const displayData = (posts) => {
     const postContainer = document.getElementById('post-container');
-
-    // postContainer.innerHTML = '';
-
+    postContainer.innerHTML = '';
     console.log(posts);
-
-    // const ShowAll = document.getElementById('show-all');
-    // if (posts.length > 6) {
-    //     posts = posts.slice(0, 6);
-    //     ShowAll.classList.remove('d-none');
-    // }
-    // else {
-    //     ShowAll.classList.add('d-none');        
-    // }
-
-    // loop every single post
 
     posts.forEach(post => {
         const postDiv = document.createElement('div');
         postDiv.classList.add('col');
-
 
         // date format
         const publishedDate = new Date(post.published_in);
@@ -68,13 +54,6 @@ const displayData = (posts) => {
     toggleSpinner(false);
 }
 
-
-// load show all data
-// document.getElementById('show-all-btn').addEventListener('click', function () {
-//     loadAllData();
-// })
-
-
 // loader or spinner
 const toggleSpinner = isLoading => {
     const loaderSection = document.getElementById('loader');
@@ -85,7 +64,6 @@ const toggleSpinner = isLoading => {
         loaderSection.classList.add('d-none');
     }
 }
-
 
 // load single data details
 const loadSingleData = async id => {
@@ -165,3 +143,11 @@ const displayDataDetails = post => {
     `
 }
 loadAllData();
+
+// show all data by click see more button
+const showAllDataTogether = async () => {
+    const url = `https://openapi.programming-hero.com/api/ai/tools`
+    const res = await fetch(url);
+    const data = await res.json();
+    displayData(data.data.tools);
+};
