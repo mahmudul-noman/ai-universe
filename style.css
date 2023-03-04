@@ -40,3 +40,17 @@ p{
     font-size: 18px;
     font-weight: 600;
 }
+.card {
+    box-shadow: 3px 3px 7px 3px #ddd;
+}
+
+/* Responsive */
+@media screen and (max-width: 576px) {
+    #d-flex-none{
+        display: grid!important;
+    }
+    #myAccuracy {
+        font-size: 12px;
+        padding: 5px!important;
+    }
+}

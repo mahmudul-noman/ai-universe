@@ -42,7 +42,7 @@ const displayData = (posts) => {
                         <p class="card-text"><i class="fa-solid fa-calendar-days"></i> ${formattedDate}</p>
                     </div>
                     <div>
-                        <a onclick="loadSingleData('${post.id}')" style="background-color: #FEF7F7;" class="p-3 rounded-5 text-danger" data-bs-toggle="modal" data-bs-target="#postDetailsModal" href="#"><i class="fa-solid fa-arrow-right"></i></a>
+                        <a onclick="loadSingleData('${post.id}')" style="background-color: #FEF7F7;" class="p-2 rounded-2 text-danger" data-bs-toggle="modal" data-bs-target="#postDetailsModal" href="#"><i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -78,14 +78,14 @@ const displayDataDetails = post => {
     console.log(post);
     const postDetails = document.getElementById('modal-body');
     postDetails.innerHTML = `
-    <div class="col d-flex gap-4 p-5">
+    <div class="row d-flex gap-4 p-5">
 
-        <div class="w-50 border border-danger p-3 rounded-3" style="background-color: #ddd;">
+        <div class="col w-50 border border-danger p-3 rounded-3" style="background-color: #ddd;">
             <div>
                 <h4>${post.description == null || post.description === undefined ? 'No Description in This Card' : post.description}</h4>
             </div>
             
-            <div class="col d-flex justify-content-between align-items-center gap-2">
+            <div id="d-flex-none" class="col d-flex justify-content-between align-items-center gap-2">
             <div class="card h-100 w-100">
             <div class="card-body">
             <h5 class="card-title text-success">${post.pricing == null || post.pricing[0] === undefined ? 'Free of cost/' : post.pricing[0].price}</h5>
@@ -129,9 +129,10 @@ const displayDataDetails = post => {
     </div >
     </div >
 
-    <div class="border border-1 p-4 rounded-3 w-50">
+
+    <div class="col border border-1 p-4 rounded-3 w-50">
         <div>
-            <p class="my-accuracy bg-danger end-0 p-2 position-absolute rounded-3 text-white" style="display: ${post.accuracy.score ? '' : 'none'};">
+            <p id="myAccuracy" class="my-accuracy bg-danger end-0 p-2 position-absolute rounded-3 text-white" style="display: ${post.accuracy.score ? '' : 'none'};">
                 ${post.accuracy.score ? post.accuracy.score * 100 + '% Accuracy' : ''} </p>
 
             <img src="${post.image_link[0]}" class="img-fluid rounded-2 w-100">
